@@ -1,14 +1,13 @@
-import dao.LibroDAO;
-import dao.RivistaDAO;
+import dao.*;
+import entities.*;
 import entities.Enum.TipoPeriodicita;
-import entities.Libro;
-import entities.Pubblicazione;
-import entities.Rivista;
 import utils.JpaUtils;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityTransaction;
 import javax.persistence.Query;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
 
 public class Application {
@@ -156,6 +155,34 @@ public class Application {
 //                System.out.println("Nessuna pubblicazione trovata con il codice ISBN " + "isbnDaRimuovere");
 //            }
 
+
+
+
+            UtenteDAO utenteDAO = new UtenteDAO(em);
+            PubblicazioneDAO pubblicazioneDAO = new PubblicazioneDAO(em);
+            PrestitoDAO prestitoDAO = new PrestitoDAO(em);
+
+            Utente mario = new Utente("mario", "bianchi", new Date(), 1121233L);
+            Utente giovanni = new Utente("giovanni", "rossi", new Date(), 2453453L);
+
+            Pubblicazione libro4 = new Libro(112398950L, "Titolo Scaduto", 2020, 200, "Romanzo", "giovanni");
+            Pubblicazione rivista4 = new Rivista(123092012L, "Titolo Attivo", 2022, 100, TipoPeriodicita.SETTIMANALE);
+
+            Calendar cal = Calendar.getInstance();
+            cal.add(Calendar.DAY_OF_MONTH, -30);
+            Date dataPrestitoScaduto = cal.getTime();
+            Date dataPrestitoAttivo = new Date();
+
+            Prestito prestitoScaduto = new Prestito(mario, libro4, dataPrestitoScaduto);
+            Prestito prestitoAttivo = new Prestito(giovanni, rivista4, dataPrestitoAttivo);
+
+
+            utenteDAO.save(mario);
+            utenteDAO.save(giovanni);
+            pubblicazioneDAO.save(libro4);
+            pubblicazioneDAO.save(rivista4);
+            prestitoDAO.save(prestitoScaduto);
+            prestitoDAO.save(prestitoAttivo);
 
 
 
