@@ -17,12 +17,12 @@ public class RivistaDAO {
             em.persist(p);
             transaction.commit();
             System.out.println("Event salvatao correttamente: " + p);
-        } catch (Exception e) {
+        } catch (Exception ex) {
             if (transaction.isActive()) {
                 transaction.rollback();
             }
-            System.err.println("Errore durante il salvataggio dell'Evento."+ e);
-            throw e;
+            System.err.println("Errore durante il salvataggio dell'Evento."+ ex);
+            throw ex;
         }
     }
 
