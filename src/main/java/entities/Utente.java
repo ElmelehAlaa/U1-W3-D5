@@ -22,6 +22,8 @@ private List<Prestito> prestiti;
         this.numeroTessera = numeroTessera;
     }
 
+    public Utente() {
+    }
 
     public String getNome() {
         return nome;

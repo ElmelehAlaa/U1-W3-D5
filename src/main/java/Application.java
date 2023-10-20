@@ -157,32 +157,77 @@ public class Application {
 
 
 
-
+/////////////////////////CREAZIONE DUE UTENTI, TRE PUBBLICAZIONI E TRE PRESTITI ATTIVI/////////////////////////////
             UtenteDAO utenteDAO = new UtenteDAO(em);
             PubblicazioneDAO pubblicazioneDAO = new PubblicazioneDAO(em);
             PrestitoDAO prestitoDAO = new PrestitoDAO(em);
 
             Utente mario = new Utente("mario", "bianchi", new Date(), 1121233L);
-            Utente giovanni = new Utente("giovanni", "rossi", new Date(), 2453453L);
+           Utente giovanni = new Utente("giovanni", "rossi", new Date(), 2453453L);
 
             Pubblicazione libro4 = new Libro(112398950L, "Titolo Scaduto", 2020, 200, "Romanzo", "giovanni");
             Pubblicazione rivista4 = new Rivista(123092012L, "Titolo Attivo", 2022, 100, TipoPeriodicita.SETTIMANALE);
+           Pubblicazione rivista5 = new Rivista(123031011L, "Ciaooooo", 2022, 500, TipoPeriodicita.MENSILE);
 
             Calendar cal = Calendar.getInstance();
             cal.add(Calendar.DAY_OF_MONTH, -30);
-            Date dataPrestitoScaduto = cal.getTime();
-            Date dataPrestitoAttivo = new Date();
+            Date dataPrestito1 = cal.getTime();
+            Date dataPrestito2 = new Date();
+            Date dataPrestito3 = cal.getTime();
 
-            Prestito prestitoScaduto = new Prestito(mario, libro4, dataPrestitoScaduto);
-            Prestito prestitoAttivo = new Prestito(giovanni, rivista4, dataPrestitoAttivo);
+            Prestito prestito1 = new Prestito(mario, libro4, dataPrestito1);
+            Prestito prestito2 = new Prestito(giovanni, rivista4, dataPrestito2);
+            Prestito prestito3 = new Prestito(giovanni, rivista5, dataPrestito3);
 
 
-            utenteDAO.save(mario);
-            utenteDAO.save(giovanni);
-            pubblicazioneDAO.save(libro4);
-            pubblicazioneDAO.save(rivista4);
-            prestitoDAO.save(prestitoScaduto);
-            prestitoDAO.save(prestitoAttivo);
+//            utenteDAO.save(mario);
+//            utenteDAO.save(giovanni);
+//            pubblicazioneDAO.save(libro4);
+//            pubblicazioneDAO.save(rivista4);
+//            pubblicazioneDAO.save(rivista5);
+
+
+//            prestitoDAO.save(prestito1);
+//            prestitoDAO.save(prestito2);
+//            prestitoDAO.save(prestito3);
+
+
+
+
+
+
+            //////////////Named Query per trovare i prestiti attivi per l'utente specificato/////////////////////////////
+            long numeroTessera = 2453453L;
+
+            Query query = em.createNamedQuery("Prestito.findPrestitiAttiviByNumeroTessera");
+            query.setParameter("numeroTessera", numeroTessera);
+
+            List<Prestito> prestitiAttivi = query.getResultList();
+
+            if (!prestitiAttivi.isEmpty()) {
+                System.out.println("Prestiti attivi per l'utente con numero di tessera " + numeroTessera + ":");
+                for (Prestito prestito : prestitiAttivi) {
+                    System.out.println(prestito);
+                }
+            } else {
+                System.out.println("Nessun prestito attivo trovato per l'utente con numero di tessera " + numeroTessera);
+            }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

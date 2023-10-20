@@ -4,21 +4,23 @@ import javax.persistence.*;
 import java.util.Calendar;
 import java.util.Date;
 @Entity
+    @NamedQuery(name = "Prestito.findPrestitiAttiviByNumeroTessera", query = "SELECT p FROM Prestito p WHERE p.utente.numeroTessera = :numeroTessera AND p.dataRestituizioneEffettiva IS NULL")
 public class Prestito {
 
     @Id
     @GeneratedValue
     private long id;
-
     private Date dataInizioPrestito;
     private Date dataRestituizionePrevista;
     private Date dataRestituizioneEffettiva;
+
 
     @ManyToOne
     @JoinColumn(name="utente_id")
     private Utente utente;
 
     @ManyToOne
+
     @JoinColumn(name = "elemento_prestato_id")
     private Pubblicazione elementoPrestato;
 
@@ -31,6 +33,9 @@ public class Prestito {
         calendar.setTime(dataInizioPrestito);
         calendar.add(Calendar.DAY_OF_MONTH, 30);
         this.dataRestituizionePrevista = calendar.getTime();
+    }
+
+    public Prestito() {
     }
 
     public Utente getUtente() {
@@ -64,7 +69,7 @@ public class Prestito {
                 ", dataInizioPrestito=" + dataInizioPrestito +
                 ", dataRestituizionePrevista=" + dataRestituizionePrevista +
                 ", dataRestituizioneEffettiva=" + dataRestituizioneEffettiva +
-                ", utente=" + utente +
+                ", utente=" + utente.getNome() +
                 ", elementoPrestato=" + elementoPrestato +
                 '}';
     }
