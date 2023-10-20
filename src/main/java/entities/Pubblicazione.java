@@ -9,6 +9,7 @@ import javax.persistence.*;
 @Inheritance(strategy = InheritanceType.JOINED)
 @Table(name = "Pubblicazioni")
 @NamedQuery(name = "Pubblicazione.findByCodiceISBN",query = "SELECT p FROM Pubblicazione p Where p.codiceISBN = :isbn")
+@NamedQuery(name = "Pubblicazione.findByAnnoPubblicazione",query = "SELECT p FROM Pubblicazione p Where p.annoPubblicazione= :annoPubblicazione")
 public abstract class Pubblicazione {
     @Id
     private long codiceISBN;
