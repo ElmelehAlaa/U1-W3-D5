@@ -5,6 +5,8 @@ import entities.Rivista;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityTransaction;
+import javax.persistence.TypedQuery;
+import java.util.List;
 
 public class PubblicazioneDAO {
     private final EntityManager em;
@@ -28,6 +30,12 @@ public class PubblicazioneDAO {
 
     public Pubblicazione getById(long id) {
         return em.find(Pubblicazione.class, id);
+    }
+
+    public List<Pubblicazione>getPubblicazioni (){
+        TypedQuery<Pubblicazione> getAllQuery= em.createQuery("SELECT p FROM Pubblicazioni p", Pubblicazione.class);
+        return getAllQuery.getResultList();
+
     }
 
     public void delete(long id ) {

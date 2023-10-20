@@ -6,6 +6,7 @@ import javax.persistence.*;
 import java.util.List;
 
 @Entity
+@NamedQuery(name = "Rivista.findByCodiceISBN", query = "SELECT r FROM Rivista r WHERE r.codiceISBN = :isbn")
 public class Rivista extends Pubblicazione {
 
     @Column(nullable = false)
@@ -13,6 +14,8 @@ public class Rivista extends Pubblicazione {
     private TipoPeriodicita tipoPeriodicita;
     @OneToMany(mappedBy = "elementoPrestato")
 private List<Prestito>prestiti;
+
+    public Rivista(){};
     public Rivista(long codiceISBN, String titolo, int annoPubblicazione, int numeroPagine, TipoPeriodicita tipoPeriodicita) {
         super(codiceISBN, titolo, annoPubblicazione, numeroPagine);
         this.tipoPeriodicita = tipoPeriodicita;

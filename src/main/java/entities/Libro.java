@@ -1,13 +1,17 @@
 package entities;
 
 import javax.persistence.Entity;
+import javax.persistence.NamedQuery;
 
 @Entity
+@NamedQuery(name = "Libro.findByCodiceISBN", query = "SELECT l FROM Libro l WHERE l.codiceISBN = :isbn")
 public class Libro extends Pubblicazione {
     private String genere;
     private String autore;
 
 
+    public Libro() {
+    }
 
     public Libro(long codiceISBN, String titolo, int annoPubblicazione, int numeroPagine, String genere, String autore) {
         super(codiceISBN, titolo, annoPubblicazione, numeroPagine);
