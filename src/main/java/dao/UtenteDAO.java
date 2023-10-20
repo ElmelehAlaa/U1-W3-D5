@@ -1,37 +1,36 @@
 package dao;
 
-import entities.Libro;
+import entities.Utente;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityTransaction;
 
-
-public class GenericDAO {
+public class UtenteDAO {
     private final EntityManager em;
 
-    public GenericDAO(EntityManager em) {this.em=em;}
-    public void save(Libro p) {
+    public UtenteDAO(EntityManager em) {this.em=em;}
+    public void save(Utente p) {
         EntityTransaction transaction = em.getTransaction();
         try {
             transaction.begin();
             em.persist(p);
             transaction.commit();
             System.out.println("Event salvatao correttamente: " + p);
-        } catch (Exception e) {
+        } catch (Exception ex) {
             if (transaction.isActive()) {
                 transaction.rollback();
             }
-            System.err.println("Errore durante il salvataggio dell'Evento."+ e);
-            throw e;
+            System.err.println("Errore durante il salvataggio dell'Evento."+ ex);
+            throw ex;
         }
     }
 
-    public Libro getById(long id) {
-        return em.find(Libro.class, id);
+    public Utente getById(long id) {
+        return em.find(Utente.class, id);
     }
 
     public void delete(long id ) {
-        Libro p = em.find(Libro.class, id);
+        Utente p = em.find(Utente.class, id);
         if (p != null) {
             EntityTransaction transaction = em.getTransaction();
             try {

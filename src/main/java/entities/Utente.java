@@ -7,7 +7,7 @@ import java.util.Date;
 import java.util.List;
 
 @Entity
-class Utente {
+public class Utente {
     private String nome;
     private String cognome;
     private Date dataNascita;
