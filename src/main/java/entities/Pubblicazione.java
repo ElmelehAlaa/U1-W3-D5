@@ -10,6 +10,9 @@ import javax.persistence.*;
 @Table(name = "Pubblicazioni")
 @NamedQuery(name = "Pubblicazione.findByCodiceISBN",query = "SELECT p FROM Pubblicazione p Where p.codiceISBN = :isbn")
 @NamedQuery(name = "Pubblicazione.findByAnnoPubblicazione",query = "SELECT p FROM Pubblicazione p Where p.annoPubblicazione= :annoPubblicazione")
+@NamedQuery(name = "Pubblicazione.findByAutore", query = "SELECT p FROM Pubblicazione p WHERE p.autore = :autore")
+@NamedQuery(name = "Pubblicazione.findByTitolo", query = "SELECT p FROM Pubblicazione p WHERE p.titolo LIKE :titolo")
+@NamedQuery(name = "Pubblicazione.removeByCodiceISBN", query = "DELETE FROM Pubblicazione p WHERE p.codiceISBN = :isbn")
 public abstract class Pubblicazione {
     @Id
     private long codiceISBN;

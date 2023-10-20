@@ -7,6 +7,7 @@ import entities.Rivista;
 import utils.JpaUtils;
 
 import javax.persistence.EntityManager;
+import javax.persistence.EntityTransaction;
 import javax.persistence.Query;
 import java.util.List;
 
@@ -42,7 +43,7 @@ public class Application {
 
 
 
-            
+
 
 
             ////////////////RICERCA PER ISBN/////////////////////////////////////////////
@@ -86,6 +87,74 @@ public class Application {
 //                System.out.println("Nessuna pubblicazione trovata per l'anno " + "2022");
 //            }
 
+
+
+            //////////////////////////RICERCA PER AUTORE///////////////////////////////////
+//            Query query = em.createNamedQuery("Pubblicazione.findByAutore");
+//            query.setParameter("autore","Autore del libro" );
+//
+//            List<Pubblicazione> pubblicazioni = query.getResultList();
+//
+//            if (!pubblicazioni.isEmpty()) {
+//                System.out.println("Pubblicazioni trovate per l'autore " + "Autore del libro"+ ":");
+//                for (Pubblicazione pubblicazione : pubblicazioni) {
+//                    if (pubblicazione instanceof Libro) {
+//                        Libro libroPerAutore = (Libro) pubblicazione;
+//                        System.out.println("Libro: " + libroPerAutore.getTitolo() + ", Autore: " + libroPerAutore.getAutore());
+//                    } else if (pubblicazione instanceof Rivista) {
+//                        Rivista rivistaPerAutore = (Rivista) pubblicazione;
+//                        System.out.println("Rivista: " + rivistaPerAutore.getTitolo() + ", Tipo di Periodicità: " + rivistaPerAutore.getTipoPeriodicita());
+//                    }
+//                }
+//            } else {
+//                System.out.println("Nessuna pubblicazione trovata per l'autore " + "Autore del libro");
+//            }
+
+
+
+
+            ////////////////////////RICERCA PER TITOLO O PARTE///////////////////////////////////
+//            Query query = em.createNamedQuery("Pubblicazione.findByTitolo");
+//            query.setParameter("titolo", "%" + "mio" + "%");
+//
+//            List<Pubblicazione> pubblicazioni = query.getResultList();
+//
+//            if (!pubblicazioni.isEmpty()) {
+//                System.out.println("Pubblicazioni trovate con il titolo contenente: " + "mio" + ":");
+//                for (Pubblicazione pubblicazione : pubblicazioni) {
+//                    if (pubblicazione instanceof Libro) {
+//                        Libro libroPerTitolo = (Libro) pubblicazione;
+//                        System.out.println("Libro: " + libroPerTitolo.getTitolo() + ", Autore: " + libroPerTitolo.getAutore());
+//                    } else if (pubblicazione instanceof Rivista) {
+//                        Rivista rivistaPerTitolo = (Rivista) pubblicazione;
+//                        System.out.println("Rivista: " + rivistaPerTitolo.getTitolo() + ", Tipo di Periodicità: " + rivistaPerTitolo.getTipoPeriodicita());
+//                    }
+//                }
+//            } else {
+//                System.out.println("Nessuna pubblicazione trovata con il titolo contenente: " + "mio");
+//            }
+
+
+
+
+
+
+            /////////////////////////////CERCA ED ELIMINA PER ISBN////////////////////////////////
+//            EntityTransaction transaction = em.getTransaction();
+//            transaction.begin();
+//
+//            Query query = em.createNamedQuery("Pubblicazione.removeByCodiceISBN");
+//            query.setParameter("isbn", 7777888899L);
+//
+//            int removedCount = query.executeUpdate();
+//
+//            transaction.commit();
+//
+//            if (removedCount > 0) {
+//                System.out.println("Pubblicazione con codice ISBN " + "7777888899L" + " rimossa con successo.");
+//            } else {
+//                System.out.println("Nessuna pubblicazione trovata con il codice ISBN " + "isbnDaRimuovere");
+//            }
 
 
 
