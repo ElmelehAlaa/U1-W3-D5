@@ -11,7 +11,7 @@ public class Rivista extends Pubblicazione {
     @Column(nullable = false)
 @Enumerated(EnumType.STRING)
     private TipoPeriodicita tipoPeriodicita;
-    @OneToMany(mappedBy = "elemento_prestato")
+    @OneToMany(mappedBy = "elementoPrestato")
 private List<Prestito>prestiti;
     public Rivista(long codiceISBN, String titolo, int annoPubblicazione, int numeroPagine, TipoPeriodicita tipoPeriodicita) {
         super(codiceISBN, titolo, annoPubblicazione, numeroPagine);

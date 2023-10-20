@@ -38,4 +38,15 @@ private List<Prestito> prestiti;
     public long getNumeroTessera() {
         return numeroTessera;
     }
+
+    @Override
+    public String toString() {
+        return "Utente{" +
+                "nome='" + nome + '\'' +
+                ", cognome='" + cognome + '\'' +
+                ", dataNascita=" + dataNascita +
+                ", numeroTessera=" + numeroTessera +
+                ", prestiti=" + prestiti +
+                '}';
+    }
 }

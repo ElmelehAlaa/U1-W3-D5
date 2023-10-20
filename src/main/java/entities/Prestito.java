@@ -1,12 +1,9 @@
 package entities;
 
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
+import javax.persistence.*;
 import java.util.Calendar;
 import java.util.Date;
-
+@Entity
 public class Prestito {
 
     @Id
@@ -58,5 +55,17 @@ public class Prestito {
 
     public void setDataRestituizioneEffettiva(Date dataRestituizioneEffettiva) {
         this.dataRestituizioneEffettiva = dataRestituizioneEffettiva;
+    }
+
+    @Override
+    public String toString() {
+        return "Prestito{" +
+                "id=" + id +
+                ", dataInizioPrestito=" + dataInizioPrestito +
+                ", dataRestituizionePrevista=" + dataRestituizionePrevista +
+                ", dataRestituizioneEffettiva=" + dataRestituizioneEffettiva +
+                ", utente=" + utente +
+                ", elementoPrestato=" + elementoPrestato +
+                '}';
     }
 }

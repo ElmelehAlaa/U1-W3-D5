@@ -54,4 +54,14 @@ public abstract class Pubblicazione {
     public void setNumeroPagine(int numeroPagine) {
         this.numeroPagine = numeroPagine;
     }
+
+    @Override
+    public String toString() {
+        return "Pubblicazione{" +
+                "codiceISBN=" + codiceISBN +
+                ", titolo='" + titolo + '\'' +
+                ", annoPubblicazione=" + annoPubblicazione +
+                ", numeroPagine=" + numeroPagine +
+                '}';
+    }
 }
